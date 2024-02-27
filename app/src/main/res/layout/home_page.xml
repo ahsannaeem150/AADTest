@@ -270,7 +270,7 @@
         app:layout_constraintEnd_toStartOf="@id/bTenth"
         app:layout_constraintStart_toEndOf="@id/bEighth"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#5D0064"
+        android:background="#D8A7DB"
         android:id="@+id/bNinth"
         >
     </androidx.constraintlayout.widget.ConstraintLayout>
