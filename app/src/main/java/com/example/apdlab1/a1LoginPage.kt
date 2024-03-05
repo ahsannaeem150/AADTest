@@ -5,37 +5,29 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.example.apdlab1.databinding.A1LoginpageBinding
 
 class a1LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        lateinit var homeBinding: A1LoginpageBinding
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a1_loginpage)
+        homeBinding = DataBindingUtil.setContentView(this , R.layout.a1_loginpage)
 
-        var correctPassword = true
-        var correctUsername = true
         val username = "ahsannaeem150"
         val password = "12345678"
-        val usernameTxt: EditText = findViewById(R.id.usernameTxt)
-        val passwordTxt: EditText = findViewById(R.id.passwordTxt)
-        val loginBtn: Button = findViewById(R.id.loginBtn)
 
-        loginBtn.setOnClickListener() {
-            if (usernameTxt.text.toString() != username) {
-                correctUsername = false;
-            }
-            if (passwordTxt.text.toString() != password) {
-                correctPassword = false
-            }
-            if ((usernameTxt.text.toString() == username) && (passwordTxt.text.toString() == password)) {
+        homeBinding.loginBtn.setOnClickListener() {
+            if ((homeBinding.usernameTxt.text.toString() == username) && (homeBinding.passwordTxt.text.toString() == password)) {
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                usernameTxt.setText("")
-                passwordTxt.setText("")
+                homeBinding.usernameTxt.setText("")
+                homeBinding.passwordTxt.setText("")
             }
-            if(correctUsername && !(correctPassword)){
+            if((homeBinding.usernameTxt.text.toString() == username) && (homeBinding.passwordTxt.text.toString() != password)){
                 Toast.makeText(this , "Wrong Password!" , Toast.LENGTH_SHORT).show();
-            } else if(correctPassword && !(correctUsername)){
+            } else if((homeBinding.passwordTxt.text.toString() == password) && (homeBinding.usernameTxt.text.toString() != username)){
                 Toast.makeText(this , "Wrong Username!" , Toast.LENGTH_SHORT).show();
-            } else if(!correctPassword && !correctUsername){
+            } else if((homeBinding.usernameTxt.text.toString() != username) && (homeBinding.passwordTxt.text.toString() != password)){
                 Toast.makeText(this , "Wrong Credentials!" , Toast.LENGTH_SHORT).show();
             }
         }
