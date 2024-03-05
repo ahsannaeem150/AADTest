@@ -44,26 +44,31 @@ class ticktactoeMain : AppCompatActivity() {
 
 
         fun checkResult(){
-            if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == "O" || homeBinding.topLeftTxt.text.toString() == "1")) {
+            if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == "O" || homeBinding.topCenterTxt.text.toString() == "1")) {
                 currentPlayerWon()
-            } else if((homeBinding.centerLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.centerRightTxt.text.toString() == "O" || homeBinding.centerRightTxt.text.toString() == "1")) {
+            } else if((homeBinding.centerLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString() == "O" || homeBinding.centerTxt.text.toString() == "1")) {
                 currentPlayerWon()
-            } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomRightTxt.text.toString() == "O" || homeBinding.bottomRightTxt.text.toString() == "1")){
+            } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomCenterTxt.text.toString() == "O" || homeBinding.bottomCenterTxt.text.toString() == "1")){
                 currentPlayerWon()
-            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString())){
+            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == "O" || homeBinding.centerLeftTxt.text.toString() == "1")){
                 currentPlayerWon()
-            }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()))  {
+            }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString())  && (homeBinding.centerTxt.text.toString() == "O" || homeBinding.centerTxt.text.toString() == "1"))  {
                 currentPlayerWon()
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())){
+            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.centerRightTxt.text.toString() == "O" || homeBinding.centerRightTxt.text.toString() == "1")){
                 currentPlayerWon()
-            }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()))  {
+            }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()) && (homeBinding.bottomRightTxt.text.toString() == "O" || homeBinding.bottomRightTxt.text.toString() == "1"))  {
                 currentPlayerWon()
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString())) {
+            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == "O" || homeBinding.bottomLeftTxt.text.toString() == "1")) {
                 currentPlayerWon()
             }
         }
 
-
+        fun ifAllBoxesFilled(){
+            if(homeBinding.topLeftTxt.text.isNotEmpty() && homeBinding.topCenterTxt.text.isNotEmpty() && homeBinding.topRightTxt.text.isNotEmpty() && homeBinding.centerLeftTxt.text.isNotEmpty() && homeBinding.centerTxt.text.isNotEmpty() && homeBinding.centerRightTxt.text.isNotEmpty() && homeBinding.bottomLeftTxt.text.isNotEmpty() && homeBinding.bottomCenterTxt.text.isNotEmpty() && homeBinding.bottomRightTxt.text.isNotEmpty()) {
+                homeBinding.resultTxt.text = "IT'S A TIE!"
+                homeBinding.endGame.setVisibility(View.VISIBLE)
+            }
+        }
         fun playerAction(clickedBox: TextView){
             if(clickedBox.text.toString().isEmpty()){
                 if(playerTurn){
@@ -71,6 +76,7 @@ class ticktactoeMain : AppCompatActivity() {
                 } else {
                     clickedBox.text = "O"
                 }
+                ifAllBoxesFilled()
                 checkResult()
                 switchTurn()
             }
@@ -103,7 +109,6 @@ class ticktactoeMain : AppCompatActivity() {
         homeBinding.bottomRightTxt.setOnClickListener{
             playerAction(homeBinding.bottomRightTxt)
         }
-
         fun newGame(){
             homeBinding.topLeftTxt.text = ""
             homeBinding.topCenterTxt.text = ""
@@ -114,7 +119,6 @@ class ticktactoeMain : AppCompatActivity() {
             homeBinding.bottomLeftTxt.text = ""
             homeBinding.bottomCenterTxt.text = ""
             homeBinding.bottomRightTxt.text = ""
-
             homeBinding.resultTxt.text = ""
             playerTurn = true
             homeBinding.player.setText("Player 1")
