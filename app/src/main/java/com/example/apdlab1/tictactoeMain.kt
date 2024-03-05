@@ -16,8 +16,8 @@ class ticktactoeMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.ticktactoe)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
-        homeBinding.endGame.setVisibility(View.GONE);           //hiding reset button until someone wins
-        homeBinding.player.setText("Player 1")
+//        homeBinding.endGame.setVisibility(View.GONE);           //hiding reset button until someone wins
+//        homeBinding.player.setText("Player 1")
         var playerTurn: Boolean = true
 
         fun switchTurn(){
@@ -93,33 +93,36 @@ class ticktactoeMain : AppCompatActivity() {
             }
         }
 
-        homeBinding.topLeftTxt.setOnClickListener{
-            playerAction(homeBinding.topLeftTxt)
+        fun setListeners(){
+            homeBinding.topLeftTxt.setOnClickListener{
+                playerAction(homeBinding.topLeftTxt)
+            }
+            homeBinding.topCenterTxt.setOnClickListener{
+                playerAction(homeBinding.topCenterTxt)
+            }
+            homeBinding.topRightTxt.setOnClickListener{
+                playerAction(homeBinding.topRightTxt)
+            }
+            homeBinding.centerLeftTxt.setOnClickListener{
+                playerAction(homeBinding.centerLeftTxt)
+            }
+            homeBinding.centerTxt.setOnClickListener{
+                playerAction(homeBinding.centerTxt)
+            }
+            homeBinding.centerRightTxt.setOnClickListener{
+                playerAction(homeBinding.centerRightTxt)
+            }
+            homeBinding.bottomLeftTxt.setOnClickListener{
+                playerAction(homeBinding.bottomLeftTxt)
+            }
+            homeBinding.bottomCenterTxt.setOnClickListener{
+                playerAction(homeBinding.bottomCenterTxt)
+            }
+            homeBinding.bottomRightTxt.setOnClickListener{
+                playerAction(homeBinding.bottomRightTxt)
+            }
         }
-        homeBinding.topCenterTxt.setOnClickListener{
-            playerAction(homeBinding.topCenterTxt)
-        }
-        homeBinding.topRightTxt.setOnClickListener{
-            playerAction(homeBinding.topRightTxt)
-        }
-        homeBinding.centerLeftTxt.setOnClickListener{
-            playerAction(homeBinding.centerLeftTxt)
-        }
-        homeBinding.centerTxt.setOnClickListener{
-            playerAction(homeBinding.centerTxt)
-        }
-        homeBinding.centerRightTxt.setOnClickListener{
-            playerAction(homeBinding.centerRightTxt)
-        }
-        homeBinding.bottomLeftTxt.setOnClickListener{
-            playerAction(homeBinding.bottomLeftTxt)
-        }
-        homeBinding.bottomCenterTxt.setOnClickListener{
-            playerAction(homeBinding.bottomCenterTxt)
-        }
-        homeBinding.bottomRightTxt.setOnClickListener{
-            playerAction(homeBinding.bottomRightTxt)
-        }
+
         fun newGame(){
             homeBinding.topLeftTxt.text = ""
             homeBinding.topCenterTxt.text = ""
@@ -134,10 +137,11 @@ class ticktactoeMain : AppCompatActivity() {
             playerTurn = true
             homeBinding.player.setText("Player 1")
             homeBinding.endGame.setVisibility(View.GONE)
+            setListeners()
         }
-
         homeBinding.endGame.setOnClickListener {
             newGame()
         }
+        newGame()
     }
 }
