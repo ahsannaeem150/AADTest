@@ -10,14 +10,9 @@ import com.example.apdlab1.databinding.TicktactoeBinding
 
 class ticktactoeMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-
         lateinit var homeBinding: TicktactoeBinding
-
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.ticktactoe)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
-//        homeBinding.endGame.setVisibility(View.GONE);           //hiding reset button until someone wins
-//        homeBinding.player.setText("Player 1")
         var playerTurn: Boolean = true
 
         fun switchTurn(){
@@ -80,6 +75,7 @@ class ticktactoeMain : AppCompatActivity() {
                 homeBinding.endGame.setVisibility(View.VISIBLE)
             }
         }
+
         fun playerAction(clickedBox: TextView){
             if(clickedBox.text.toString().isEmpty()){
                 if(playerTurn){
