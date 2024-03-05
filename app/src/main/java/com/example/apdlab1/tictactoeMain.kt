@@ -33,32 +33,43 @@ class ticktactoeMain : AppCompatActivity() {
             homeBinding.endGame.setVisibility(View.VISIBLE);
         }
 
+        fun disableTurnsWhenSomeoneWins(){
+            homeBinding.topLeftTxt.setOnClickListener(null);
+            homeBinding.topCenterTxt.setOnClickListener(null);
+            homeBinding.topRightTxt.setOnClickListener(null);
+            homeBinding.centerLeftTxt.setOnClickListener(null);
+            homeBinding.centerTxt.setOnClickListener(null);
+            homeBinding.centerRightTxt.setOnClickListener(null);
+            homeBinding.bottomLeftTxt.setOnClickListener(null);
+            homeBinding.bottomCenterTxt.setOnClickListener(null);
+            homeBinding.bottomRightTxt.setOnClickListener(null);
+
+        }
         fun currentPlayerWon(){
             if(playerTurn){
                 homeBinding.resultTxt.text = "Winner: Player 1"
             } else {
                 homeBinding.resultTxt.text = "Winner: Player 2"
             }
+            disableTurnsWhenSomeoneWins()
             endGame()
         }
-
-
         fun checkResult(){
-            if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == "O" || homeBinding.topCenterTxt.text.toString() == "1")) {
+            if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString().isNotEmpty())) {
                 currentPlayerWon()
-            } else if((homeBinding.centerLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString() == "O" || homeBinding.centerTxt.text.toString() == "1")) {
+            } else if((homeBinding.centerLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString().isNotEmpty())) {
                 currentPlayerWon()
-            } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomCenterTxt.text.toString() == "O" || homeBinding.bottomCenterTxt.text.toString() == "1")){
+            } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomCenterTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
-            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == "O" || homeBinding.centerLeftTxt.text.toString() == "1")){
+            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
-            }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString())  && (homeBinding.centerTxt.text.toString() == "O" || homeBinding.centerTxt.text.toString() == "1"))  {
+            }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString())  && (homeBinding.centerTxt.text.toString().isNotEmpty()))  {
                 currentPlayerWon()
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.centerRightTxt.text.toString() == "O" || homeBinding.centerRightTxt.text.toString() == "1")){
+            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.centerRightTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
-            }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()) && (homeBinding.bottomRightTxt.text.toString() == "O" || homeBinding.bottomRightTxt.text.toString() == "1"))  {
+            }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()) && (homeBinding.bottomRightTxt.text.toString().isNotEmpty()))  {
                 currentPlayerWon()
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == "O" || homeBinding.bottomLeftTxt.text.toString() == "1")) {
+            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString().isNotEmpty())) {
                 currentPlayerWon()
             }
         }
