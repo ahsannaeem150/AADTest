@@ -1,5 +1,6 @@
 package com.example.apdlab1
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,9 +17,11 @@ class TickTacToe : AppCompatActivity() {
 
         fun switchTurn(){
             if(playerTurn){
-                homeBinding.player.setText("Player 2")
+                homeBinding.player.setText("PLAYER 2")
+                homeBinding.player.setTextColor(Color.RED)
             } else {
-                homeBinding.player.setText("Player 1")
+                homeBinding.player.setText("PLAYER 1")
+                homeBinding.player.setTextColor(Color.GREEN)
             }
             playerTurn = !playerTurn
         }
@@ -40,9 +43,11 @@ class TickTacToe : AppCompatActivity() {
         }
         fun currentPlayerWon(){
             if(playerTurn){
-                homeBinding.resultTxt.text = "Winner: Player 1"
+                homeBinding.resultTxt.text = "Winner: PLAYER 1"
+                homeBinding.resultTxt.setTextColor(Color.GREEN)
             } else {
-                homeBinding.resultTxt.text = "Winner: Player 2"
+                homeBinding.resultTxt.text = "Winner: PLAYER 2"
+                homeBinding.resultTxt.setTextColor(Color.RED)
             }
             disableTurnsWhenSomeoneWins()
             endGame()
@@ -113,8 +118,10 @@ class TickTacToe : AppCompatActivity() {
             if(clickedBox.text.toString().isEmpty()){
                 if(playerTurn){
                     clickedBox.text = "X"
+                    clickedBox.setTextColor(Color.GREEN)
                 } else {
                     clickedBox.text = "O"
+                    clickedBox.setTextColor(Color.RED)
                 }
                 ifAllBoxesFilled()
                 checkResult()
@@ -173,7 +180,8 @@ class TickTacToe : AppCompatActivity() {
             homeBinding.bottomCenterLine.visibility = View.GONE
             homeBinding.bottomRightLine.visibility = View.GONE
             playerTurn = true
-            homeBinding.player.text = "Player 1"
+            homeBinding.player.text = "PLAYER 1"
+            homeBinding.player.setTextColor(Color.GREEN)
             homeBinding.endGame.visibility = View.GONE
             setListeners()
         }
