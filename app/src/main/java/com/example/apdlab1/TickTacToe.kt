@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.apdlab1.databinding.TicktactoeBinding
 
-class ticktactoeMain : AppCompatActivity() {
+class TickTacToe : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var homeBinding: TicktactoeBinding
         super.onCreate(savedInstanceState)
