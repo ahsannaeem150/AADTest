@@ -16,7 +16,7 @@
             android:name=".a1ForgetPassword"
             android:exported="false" />
         <activity
-            android:name=".a1LoginPage"
+            android:name=".ticktactoeMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

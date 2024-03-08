@@ -12,7 +12,7 @@ class ticktactoeMain : AppCompatActivity() {
         lateinit var homeBinding: TicktactoeBinding
         super.onCreate(savedInstanceState)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
-        var playerTurn: Boolean = true
+        var playerTurn = true
 
         fun switchTurn(){
             if(playerTurn){
@@ -28,16 +28,15 @@ class ticktactoeMain : AppCompatActivity() {
         }
 
         fun disableTurnsWhenSomeoneWins(){
-            homeBinding.topLeftTxt.setOnClickListener(null);
-            homeBinding.topCenterTxt.setOnClickListener(null);
-            homeBinding.topRightTxt.setOnClickListener(null);
-            homeBinding.centerLeftTxt.setOnClickListener(null);
-            homeBinding.centerTxt.setOnClickListener(null);
-            homeBinding.centerRightTxt.setOnClickListener(null);
-            homeBinding.bottomLeftTxt.setOnClickListener(null);
-            homeBinding.bottomCenterTxt.setOnClickListener(null);
-            homeBinding.bottomRightTxt.setOnClickListener(null);
-
+            homeBinding.topLeftTxt.setOnClickListener(null)
+            homeBinding.topCenterTxt.setOnClickListener(null)
+            homeBinding.topRightTxt.setOnClickListener(null)
+            homeBinding.middleLeftTxt.setOnClickListener(null)
+            homeBinding.centerTxt.setOnClickListener(null)
+            homeBinding.middleRightTxt.setOnClickListener(null)
+            homeBinding.bottomLeftTxt.setOnClickListener(null)
+            homeBinding.bottomCenterTxt.setOnClickListener(null)
+            homeBinding.bottomRightTxt.setOnClickListener(null)
         }
         fun currentPlayerWon(){
             if(playerTurn){
@@ -48,18 +47,29 @@ class ticktactoeMain : AppCompatActivity() {
             disableTurnsWhenSomeoneWins()
             endGame()
         }
+        fun drawLine(combination: Int){
+            if(combination == 1){
+                homeBinding.topLeftLine.visibility = View.VISIBLE
+                homeBinding.topCenterLine.visibility = View.VISIBLE
+                homeBinding.topRightLine.visibility = View.VISIBLE
+                homeBinding.topLeftLine.rotation = 90F
+                homeBinding.topCenterLine.rotation = 90F
+                homeBinding.topRightLine.rotation = 90F
+            }
+        }
         fun checkResult(){
             if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString().isNotEmpty())) {
                 currentPlayerWon()
-            } else if((homeBinding.centerLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString().isNotEmpty())) {
+                drawLine(1)
+            } else if((homeBinding.middleLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.middleLeftTxt.text.toString() == homeBinding.middleRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString().isNotEmpty())) {
                 currentPlayerWon()
             } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomCenterTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
-            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.centerLeftTxt.text.toString().isNotEmpty())){
+            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.middleLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.middleLeftTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
             }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString())  && (homeBinding.centerTxt.text.toString().isNotEmpty()))  {
                 currentPlayerWon()
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.centerRightTxt.text.toString().isNotEmpty())){
+            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.middleRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.middleRightTxt.text.toString().isNotEmpty())){
                 currentPlayerWon()
             }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()) && (homeBinding.bottomRightTxt.text.toString().isNotEmpty()))  {
                 currentPlayerWon()
@@ -69,7 +79,7 @@ class ticktactoeMain : AppCompatActivity() {
         }
 
         fun ifAllBoxesFilled(){
-            if(homeBinding.topLeftTxt.text.isNotEmpty() && homeBinding.topCenterTxt.text.isNotEmpty() && homeBinding.topRightTxt.text.isNotEmpty() && homeBinding.centerLeftTxt.text.isNotEmpty() && homeBinding.centerTxt.text.isNotEmpty() && homeBinding.centerRightTxt.text.isNotEmpty() && homeBinding.bottomLeftTxt.text.isNotEmpty() && homeBinding.bottomCenterTxt.text.isNotEmpty() && homeBinding.bottomRightTxt.text.isNotEmpty()) {
+            if(homeBinding.topLeftTxt.text.isNotEmpty() && homeBinding.topCenterTxt.text.isNotEmpty() && homeBinding.topRightTxt.text.isNotEmpty() && homeBinding.middleLeftTxt.text.isNotEmpty() && homeBinding.centerTxt.text.isNotEmpty() && homeBinding.middleRightTxt.text.isNotEmpty() && homeBinding.bottomLeftTxt.text.isNotEmpty() && homeBinding.bottomCenterTxt.text.isNotEmpty() && homeBinding.bottomRightTxt.text.isNotEmpty()) {
                 homeBinding.resultTxt.text = "IT'S A TIE!"
                 homeBinding.endGame.setVisibility(View.VISIBLE)
             }
@@ -98,14 +108,14 @@ class ticktactoeMain : AppCompatActivity() {
             homeBinding.topRightTxt.setOnClickListener{
                 playerAction(homeBinding.topRightTxt)
             }
-            homeBinding.centerLeftTxt.setOnClickListener{
-                playerAction(homeBinding.centerLeftTxt)
+            homeBinding.middleLeftTxt.setOnClickListener{
+                playerAction(homeBinding.middleLeftTxt)
             }
             homeBinding.centerTxt.setOnClickListener{
                 playerAction(homeBinding.centerTxt)
             }
-            homeBinding.centerRightTxt.setOnClickListener{
-                playerAction(homeBinding.centerRightTxt)
+            homeBinding.middleRightTxt.setOnClickListener{
+                playerAction(homeBinding.middleRightTxt)
             }
             homeBinding.bottomLeftTxt.setOnClickListener{
                 playerAction(homeBinding.bottomLeftTxt)
@@ -122,16 +132,25 @@ class ticktactoeMain : AppCompatActivity() {
             homeBinding.topLeftTxt.text = ""
             homeBinding.topCenterTxt.text = ""
             homeBinding.topRightTxt.text = ""
-            homeBinding.centerLeftTxt.text = ""
+            homeBinding.middleLeftTxt.text = ""
             homeBinding.centerTxt.text = ""
-            homeBinding.centerRightTxt.text = ""
+            homeBinding.middleRightTxt.text = ""
             homeBinding.bottomLeftTxt.text = ""
             homeBinding.bottomCenterTxt.text = ""
             homeBinding.bottomRightTxt.text = ""
             homeBinding.resultTxt.text = ""
+            homeBinding.topLeftLine.visibility = View.GONE
+            homeBinding.topCenterLine.visibility = View.GONE
+            homeBinding.topRightLine.visibility = View.GONE
+            homeBinding.middleLeftLine.visibility = View.GONE
+            homeBinding.centerLine.visibility = View.GONE
+            homeBinding.middleRightLine.visibility = View.GONE
+            homeBinding.bottomLeftLine.visibility = View.GONE
+            homeBinding.bottomCenterLine.visibility = View.GONE
+            homeBinding.bottomRightLine.visibility = View.GONE
             playerTurn = true
-            homeBinding.player.setText("Player 1")
-            homeBinding.endGame.setVisibility(View.GONE)
+            homeBinding.player.text = "Player 1"
+            homeBinding.endGame.visibility = View.GONE
             setListeners()
         }
         homeBinding.endGame.setOnClickListener {
