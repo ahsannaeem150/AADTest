@@ -243,7 +243,24 @@ class TickTacToeComputer : AppCompatActivity() {
                 return false
             }
         }
-
+        fun areSidesEmpty():Boolean{
+            if(homeBinding.topCenterTxt.text.toString().isEmpty() || homeBinding.middleLeftTxt.text.toString().isEmpty() || homeBinding.middleRightTxt.text.toString().isEmpty() || homeBinding.bottomCenterTxt.text.toString().isEmpty()){
+                return true
+            } else {
+                return false
+            }
+        }
+        fun fillSides(){
+            if(homeBinding.topCenterTxt.text.toString().isEmpty()){
+                playerAction(homeBinding.topCenterTxt)
+            }  else  if(homeBinding.middleLeftTxt.text.toString().isEmpty()){
+                playerAction(homeBinding.middleLeftTxt)
+            } else if(homeBinding.middleRightTxt.text.toString().isEmpty()){
+                playerAction(homeBinding.middleRightTxt)
+            } else if(homeBinding.bottomCenterTxt.text.toString().isEmpty()){
+                playerAction(homeBinding.bottomCenterTxt)
+            }
+        }
         fun computerTurn(){
             if(homeBinding.centerTxt.text.toString().isEmpty()){
                 playerAction(homeBinding.centerTxt)
@@ -253,6 +270,10 @@ class TickTacToeComputer : AppCompatActivity() {
 
             } else if(areCornersEmpty()){
                 fillCorners()
+            }  else if(areSidesEmpty()){
+                fillSides()
+            }  else {
+
             }
         }
 
@@ -263,30 +284,46 @@ class TickTacToeComputer : AppCompatActivity() {
             }
             homeBinding.topLeftTxt.setOnClickListener{
                 playerAction(homeBinding.topLeftTxt)
+                computerTurn()
             }
             homeBinding.topCenterTxt.setOnClickListener{
                 playerAction(homeBinding.topCenterTxt)
+                computerTurn()
+
             }
             homeBinding.topRightTxt.setOnClickListener{
                 playerAction(homeBinding.topRightTxt)
+                computerTurn()
+
             }
             homeBinding.middleLeftTxt.setOnClickListener{
                 playerAction(homeBinding.middleLeftTxt)
+                computerTurn()
+
             }
             homeBinding.centerTxt.setOnClickListener{
                 playerAction(homeBinding.centerTxt)
+                computerTurn()
+
             }
             homeBinding.middleRightTxt.setOnClickListener{
                 playerAction(homeBinding.middleRightTxt)
+                computerTurn()
+
             }
             homeBinding.bottomLeftTxt.setOnClickListener{
                 playerAction(homeBinding.bottomLeftTxt)
+                computerTurn()
+
             }
             homeBinding.bottomCenterTxt.setOnClickListener{
                 playerAction(homeBinding.bottomCenterTxt)
+                computerTurn()
+
             }
             homeBinding.bottomRightTxt.setOnClickListener{
                 playerAction(homeBinding.bottomRightTxt)
+                computerTurn()
             }
         }
 
