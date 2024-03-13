@@ -1,4 +1,4 @@
-package com.example.apdlab1
+package tictactoe
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import com.example.apdlab1.R
 import com.example.apdlab1.databinding.TicktactoeBinding
 
 class TickTacToe : AppCompatActivity() {
@@ -14,6 +15,7 @@ class TickTacToe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
         var playerTurn = true
+        var opponent = true
         fun switchTurn(){
             if(playerTurn){
                 homeBinding.player.setText("PLAYER 2")
@@ -51,6 +53,7 @@ class TickTacToe : AppCompatActivity() {
             disableTurnsWhenSomeoneWins()
             endGame()
         }
+
         fun drawLineOnCombination(componentOne: View ,componentTwo: View , componentThree: View, lineDegree: Float){
             componentOne.visibility = View.VISIBLE
             componentTwo.visibility = View.VISIBLE
@@ -108,7 +111,7 @@ class TickTacToe : AppCompatActivity() {
             }   else if(checkRow(homeBinding.topLeftTxt, homeBinding.centerTxt , homeBinding.bottomRightTxt))  {
                 currentPlayerWon()
                 drawLine(7)
-            }   else if(checkRow(homeBinding.topRightTxt, homeBinding.centerTxt , homeBinding.middleLeftTxt)) {
+            }   else if(checkRow(homeBinding.topRightTxt, homeBinding.centerTxt , homeBinding.bottomLeftTxt)) {
                 currentPlayerWon()
                 drawLine(8)
             }

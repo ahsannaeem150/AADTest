@@ -1,10 +1,11 @@
-package com.example.apdlab1
+package loginpage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.apdlab1.R
 import com.example.apdlab1.databinding.A1ForgetpasswordBinding
 
 class a1ForgetPassword : AppCompatActivity() {
