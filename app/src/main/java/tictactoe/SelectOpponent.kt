@@ -14,14 +14,16 @@ class SelectOpponent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this , R.layout.tictactoeselector)
 
-        val mainIntent = Intent(this , TickTacToe::class.java)
+        var mainIntent : Intent;
 
         dataBinding.computerBtn.setOnClickListener {
+            mainIntent = Intent(this , TickTacToeComputer::class.java)
             mainIntent.putExtra("Opponent" , true)
             startActivity(mainIntent)
             finish()
         }
         dataBinding.humanBtn.setOnClickListener {
+            mainIntent = Intent(this , TickTacToe::class.java)
             mainIntent.putExtra("Opponent" , false)
             startActivity(mainIntent)
             finish()

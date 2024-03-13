@@ -11,25 +11,24 @@ import androidx.databinding.DataBindingUtil
 import com.example.apdlab1.R
 import com.example.apdlab1.databinding.TicktactoeBinding
 
-class TickTacToe : AppCompatActivity() {
+
+class TickTacToeComputer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var homeBinding: TicktactoeBinding
         super.onCreate(savedInstanceState)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
         var playerTurn = true
-       // var opponent = intent.extras?.getBoolean("Opponent");
-       // Log.e("Log", opponent.toString())
         fun switchTurn(){
             if(playerTurn){
-                homeBinding.player.setText("PLAYER 2")
+                homeBinding.player.setText("Computer")
                 homeBinding.player.setTextColor(Color.RED)
             } else {
-                homeBinding.player.setText("PLAYER 1")
+                homeBinding.player.setText("PLAYER")
                 homeBinding.player.setTextColor(Color.GREEN)
             }
             playerTurn = !playerTurn
         }
-        
+
         fun endGame(){
             homeBinding.endGame.setVisibility(View.VISIBLE);
         }
@@ -47,10 +46,10 @@ class TickTacToe : AppCompatActivity() {
         }
         fun currentPlayerWon(){
             if(playerTurn){
-                homeBinding.resultTxt.text = "Winner: PLAYER 1"
+                homeBinding.resultTxt.text = "You Won!"
                 homeBinding.resultTxt.setTextColor(Color.GREEN)
             } else {
-                homeBinding.resultTxt.text = "Winner: PLAYER 2"
+                homeBinding.resultTxt.text = "You Lost!"
                 homeBinding.resultTxt.setTextColor(Color.RED)
             }
             disableTurnsWhenSomeoneWins()
@@ -132,16 +131,27 @@ class TickTacToe : AppCompatActivity() {
                 if(playerTurn){
                     clickedBox.text = "X"
                     clickedBox.setTextColor(Color.GREEN)
+                    clickedBox.tag = "X"
                 } else {
                     clickedBox.text = "O"
                     clickedBox.setTextColor(Color.RED)
+                    clickedBox.tag = "O"
                 }
                 ifAllBoxesFilled()
                 checkResult()
                 switchTurn()
             }
         }
+        fun checkRowAvailability(boxOne:TextView , boxTwo:TextView, boxThree:TextView){
 
+        }
+        fun computerTurn(){
+            if(homeBinding.centerTxt.text.toString().isEmpty()){
+                playerAction(homeBinding.centerTxt)
+            } else {
+
+            }
+        }
         fun setListeners(){
             homeBinding.selectOpponentButton.setOnClickListener {
                 startActivity(Intent(this , SelectOpponent::class.java))
@@ -197,7 +207,7 @@ class TickTacToe : AppCompatActivity() {
             homeBinding.bottomCenterLine.visibility = View.GONE
             homeBinding.bottomRightLine.visibility = View.GONE
             playerTurn = true
-            homeBinding.player.text = "PLAYER 1"
+            homeBinding.player.text = "PLAYER"
             homeBinding.player.setTextColor(Color.GREEN)
             homeBinding.endGame.visibility = View.GONE
             setListeners()
