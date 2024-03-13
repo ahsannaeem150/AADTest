@@ -14,7 +14,6 @@ class TickTacToe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
         var playerTurn = true
-
         fun switchTurn(){
             if(playerTurn){
                 homeBinding.player.setText("PLAYER 2")
@@ -79,29 +78,37 @@ class TickTacToe : AppCompatActivity() {
                 drawLineOnCombination(homeBinding.topRightLine, homeBinding.centerLine , homeBinding.bottomLeftLine , 45F)
             }
         }
+
+        fun checkRow(boxOne: TextView , boxTwo: TextView, boxThree:TextView): Boolean{
+           if( (boxOne.text.toString() == boxTwo.text.toString()) && (boxOne.text.toString() == boxThree.text.toString()) && (boxTwo.text.toString().isNotEmpty())  ){
+               return true
+           } else {
+               return false
+           }
+        }
         fun checkResult(){
-            if((homeBinding.topLeftTxt.text.toString() == homeBinding.topCenterTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.topRightTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString().isNotEmpty())) {
+            if(checkRow(homeBinding.topLeftTxt, homeBinding.topCenterTxt,  homeBinding.topRightTxt)) {
                 currentPlayerWon()
                 drawLine(1)
-            } else if((homeBinding.middleLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.middleLeftTxt.text.toString() == homeBinding.middleRightTxt.text.toString()) && (homeBinding.centerTxt.text.toString().isNotEmpty())) {
+            } else if(checkRow(homeBinding.middleLeftTxt, homeBinding.centerTxt , homeBinding.middleRightTxt)) {
                 currentPlayerWon()
                 drawLine(2)
-            } else if((homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.bottomCenterTxt.text.toString().isNotEmpty())){
+            } else if(checkRow(homeBinding.bottomLeftTxt, homeBinding.bottomCenterTxt , homeBinding.bottomRightTxt)){
                 currentPlayerWon()
                 drawLine(3)
-            }  else if((homeBinding.topLeftTxt.text.toString() == homeBinding.middleLeftTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.middleLeftTxt.text.toString().isNotEmpty())){
+            }  else if(checkRow(homeBinding.topLeftTxt, homeBinding.middleLeftTxt , homeBinding.bottomLeftTxt)){
                 currentPlayerWon()
                 drawLine(4)
-            }   else if((homeBinding.topCenterTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topCenterTxt.text.toString() == homeBinding.bottomCenterTxt.text.toString())  && (homeBinding.centerTxt.text.toString().isNotEmpty()))  {
+            }   else if(checkRow(homeBinding.bottomCenterTxt, homeBinding.centerTxt , homeBinding.topCenterTxt))  {
                 currentPlayerWon()
                 drawLine(5)
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.middleRightTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomRightTxt.text.toString())  && (homeBinding.middleRightTxt.text.toString().isNotEmpty())){
+            }   else if(checkRow(homeBinding.topRightTxt, homeBinding.middleRightTxt , homeBinding.bottomRightTxt)){
                 currentPlayerWon()
                 drawLine(6)
-            }   else if((homeBinding.topLeftTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topLeftTxt.text.toString() == homeBinding.bottomRightTxt.text.toString()) && (homeBinding.bottomRightTxt.text.toString().isNotEmpty()))  {
+            }   else if(checkRow(homeBinding.topLeftTxt, homeBinding.centerTxt , homeBinding.bottomRightTxt))  {
                 currentPlayerWon()
                 drawLine(7)
-            }   else if((homeBinding.topRightTxt.text.toString() == homeBinding.centerTxt.text.toString()) && (homeBinding.topRightTxt.text.toString() == homeBinding.bottomLeftTxt.text.toString()) && (homeBinding.bottomLeftTxt.text.toString().isNotEmpty())) {
+            }   else if(checkRow(homeBinding.topRightTxt, homeBinding.centerTxt , homeBinding.middleLeftTxt)) {
                 currentPlayerWon()
                 drawLine(8)
             }
