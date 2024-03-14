@@ -144,6 +144,8 @@ class TickTacToeComputer : AppCompatActivity() {
                     clickedBox.text = "O"
                     clickedBox.setTextColor(Color.RED)
                 }
+                homeBinding.firstTurn.setOnClickListener(null)
+                homeBinding.firstTurn.visibility = View.GONE
                 disableIndividualListener(clickedBox)
                 ifAllBoxesFilled()
                 checkResult()
@@ -248,6 +250,10 @@ class TickTacToeComputer : AppCompatActivity() {
                 startActivity(Intent(this , SelectOpponent::class.java))
                 finish()
             }
+            homeBinding.firstTurn.setOnClickListener{
+                switchTurn()
+                computerTurn()
+            }
             homeBinding.topLeftTxt.setOnClickListener{
                 playerAction(homeBinding.topLeftTxt)
                 if(!winner){
@@ -329,6 +335,7 @@ class TickTacToeComputer : AppCompatActivity() {
             winner = false
             homeBinding.player.setTextColor(Color.GREEN)
             homeBinding.endGame.visibility = View.GONE
+            homeBinding.firstTurn.visibility = View.VISIBLE
             setListeners()
         }
         homeBinding.endGame.setOnClickListener {

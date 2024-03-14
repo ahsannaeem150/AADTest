@@ -31,6 +31,17 @@
         app:layout_constraintBottom_toTopOf="@id/topcenter"
         >
     </TextView>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstTurn"
+        android:background="@drawable/baseline_assistant_direction_24"
+        app:layout_constraintTop_toBottomOf="@+id/bottomcenter"
+        app:layout_constraintBottom_toTopOf="@+id/endGame"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+    </ImageButton>
 
     <TextView
         android:layout_width="wrap_content"

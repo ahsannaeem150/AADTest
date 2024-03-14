@@ -200,6 +200,7 @@ class TickTacToe : AppCompatActivity() {
             homeBinding.player.text = "PLAYER 1"
             homeBinding.player.setTextColor(Color.GREEN)
             homeBinding.endGame.visibility = View.GONE
+            homeBinding.firstTurn.visibility = View.GONE
             setListeners()
         }
         homeBinding.endGame.setOnClickListener {
