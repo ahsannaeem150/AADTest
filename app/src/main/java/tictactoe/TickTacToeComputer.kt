@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -17,7 +16,9 @@ class TickTacToeComputer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         homeBinding = DataBindingUtil.setContentView(this , R.layout.ticktactoe)
         var playerTurn = true
+        var winner = false
         fun switchTurn(){
+            if(!winner){
             if(playerTurn){
                 homeBinding.player.setText("Computer")
                 homeBinding.player.setTextColor(Color.RED)
@@ -26,6 +27,7 @@ class TickTacToeComputer : AppCompatActivity() {
                 homeBinding.player.setTextColor(Color.GREEN)
             }
             playerTurn = !playerTurn
+            }
         }
 
         fun endGame(){
@@ -43,13 +45,16 @@ class TickTacToeComputer : AppCompatActivity() {
             homeBinding.bottomCenterTxt.setOnClickListener(null)
             homeBinding.bottomRightTxt.setOnClickListener(null)
         }
+
         fun currentPlayerWon(){
             if(playerTurn){
                 homeBinding.resultTxt.text = "You Won!"
                 homeBinding.resultTxt.setTextColor(Color.GREEN)
+                winner = true
             } else {
                 homeBinding.resultTxt.text = "You Lost!"
                 homeBinding.resultTxt.setTextColor(Color.RED)
+                winner = true
             }
             disableTurnsWhenSomeoneWins()
             endGame()
@@ -126,104 +131,148 @@ class TickTacToeComputer : AppCompatActivity() {
             }
         }
 
+        fun disableIndividualListener(box: TextView){
+            box.setOnClickListener(null)
+        }
+
         fun playerAction(clickedBox: TextView){
             if(clickedBox.text.toString().isEmpty()){
                 if(playerTurn){
                     clickedBox.text = "X"
                     clickedBox.setTextColor(Color.GREEN)
-                    clickedBox.tag = "X"
                 } else {
                     clickedBox.text = "O"
                     clickedBox.setTextColor(Color.RED)
-                    clickedBox.tag = "O"
                 }
+                disableIndividualListener(clickedBox)
                 ifAllBoxesFilled()
                 checkResult()
                 switchTurn()
             }
         }
 
-        fun checkIfWinAvailable(boxOne:TextView , boxTwo:TextView, boxThree:TextView): TextView? {
-            if( boxOne.text.toString().isEmpty() && boxTwo.text.toString() == "O" && boxThree.text.toString() == "O"){
-                return boxOne
-            }  else if(boxOne.text.toString() == "O" && boxTwo.text.toString().isEmpty() && boxThree.text.toString() == "O"){
-                return boxTwo
-            }   else if(boxOne.text.toString() == "O" && boxTwo.text.toString() == "O" && boxThree.text.toString().isEmpty()){
-                return boxThree
-            }   else {
-                return null
-            }
-        }
-        fun checkIfBlockAvailable(boxOne:TextView , boxTwo:TextView, boxThree:TextView): TextView? {
-            if( boxOne.text.toString().isEmpty() && boxTwo.text.toString() == "X" && boxThree.text.toString() == "X"){
-                return boxOne
-            }  else if(boxOne.text.toString() == "X" && boxTwo.text.toString().isEmpty() && boxThree.text.toString() == "X"){
-                return boxTwo
-            }   else if(boxOne.text.toString() == "X" && boxTwo.text.toString() == "X" && boxThree.text.toString().isEmpty()){
-                return boxThree
-            }   else {
-                return null
-            }
-        }
-        fun checkRowAvailabilityForBlock():Boolean{
-            if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt) != null){
-                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt) != null){
-                checkIfBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt) != null){
-                checkIfBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt) != null){
-                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt) != null){
-                checkIfBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt) != null){
-                checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt) != null){
-                checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
-                return true
-            } else if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt) != null){
-                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
-                return true
-            } else {
-                return false
-            }
-        }
+//        fun checkIfWinAvailable(boxOne:TextView , boxTwo:TextView, boxThree:TextView): TextView? {
+//            if( boxOne.text.toString().isEmpty() && boxTwo.text.toString() == "O" && boxThree.text.toString() == "O"){
+//                return boxOne
+//            }  else if(boxOne.text.toString() == "O" && boxTwo.text.toString().isEmpty() && boxThree.text.toString() == "O"){
+//                return boxTwo
+//            }   else if(boxOne.text.toString() == "O" && boxTwo.text.toString() == "O" && boxThree.text.toString().isEmpty()){
+//                return boxThree
+//            }   else {
+//                return null
+//            }
+//        }
+//        fun checkIfBlockAvailable(boxOne:TextView , boxTwo:TextView, boxThree:TextView): TextView? {
+//            if( boxOne.text.toString().isEmpty() && boxTwo.text.toString() == "X" && boxThree.text.toString() == "X"){
+//                return boxOne
+//            }  else if(boxOne.text.toString() == "X" && boxTwo.text.toString().isEmpty() && boxThree.text.toString() == "X"){
+//                return boxTwo
+//            }   else if(boxOne.text.toString() == "X" && boxTwo.text.toString() == "X" && boxThree.text.toString().isEmpty()){
+//                return boxThree
+//            }   else {
+//                return null
+//            }
+//        }
 
-        fun checkRowAvailabilityForWin():Boolean{
-            if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt) != null){
-                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt)?.let { playerAction(it) }
+        fun checkIfWinOrBlockAvailable(boxOne:TextView , boxTwo:TextView, boxThree:TextView , symbol: String): TextView? {
+            if( boxOne.text.toString().isEmpty() && boxTwo.text.toString() == symbol && boxThree.text.toString() == symbol){
+                return boxOne
+            }  else if(boxOne.text.toString() == symbol && boxTwo.text.toString().isEmpty() && boxThree.text.toString() == symbol){
+                return boxTwo
+            }   else if(boxOne.text.toString() == symbol && boxTwo.text.toString() == symbol && boxThree.text.toString().isEmpty()){
+                return boxThree
+            }   else {
+                return null
+            }
+        }
+        fun checkRowAvailabilityForWinOrBlock(symbol:String):Boolean{
+            if(checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt) != null){
-                checkIfWinAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt) != null){
-                checkIfWinAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt) != null){
-                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt) != null){
-                checkIfWinAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt) != null){
-                checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt) != null){
-                checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt, symbol)?.let { playerAction(it) }
                 return true
-            } else if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt) != null){
-                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+            } else if(checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt, symbol) != null){
+                checkIfWinOrBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt, symbol)?.let { playerAction(it) }
                 return true
             } else {
                 return false
             }
         }
+//        fun checkRowAvailabilityForBlock():Boolean{
+//            if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt) != null){
+//                checkIfBlockAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfBlockAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfBlockAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else {
+//                return false
+//            }
+ //       }
+
+//        fun checkRowAvailabilityForWin():Boolean{
+//            if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt) != null){
+//                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.topCenterTxt, homeBinding.topRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt) != null){
+//                checkIfWinAvailable(homeBinding.middleLeftTxt , homeBinding.centerTxt, homeBinding.middleRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfWinAvailable(homeBinding.bottomLeftTxt , homeBinding.bottomCenterTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt) != null){
+//                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.middleLeftTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt) != null){
+//                checkIfWinAvailable(homeBinding.topCenterTxt , homeBinding.centerTxt, homeBinding.bottomCenterTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.middleRightTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt) != null){
+//                checkIfWinAvailable(homeBinding.topRightTxt , homeBinding.centerTxt, homeBinding.bottomLeftTxt)?.let { playerAction(it) }
+//                return true
+//            } else if(checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt) != null){
+//                checkIfWinAvailable(homeBinding.topLeftTxt , homeBinding.centerTxt, homeBinding.bottomRightTxt)?.let { playerAction(it) }
+//                return true
+//            } else {
+//                return false
+//            }
+//        }
 
         fun fillCorners(){
             if(homeBinding.topLeftTxt.text.toString().isEmpty()){
@@ -264,9 +313,9 @@ class TickTacToeComputer : AppCompatActivity() {
         fun computerTurn(){
             if(homeBinding.centerTxt.text.toString().isEmpty()){
                 playerAction(homeBinding.centerTxt)
-            } else if(checkRowAvailabilityForWin()){
+            } else if(checkRowAvailabilityForWinOrBlock("O")){
 
-            } else if(checkRowAvailabilityForBlock()) {
+            } else if(checkRowAvailabilityForWinOrBlock("X")) {
 
             } else if(areCornersEmpty()){
                 fillCorners()
@@ -284,46 +333,57 @@ class TickTacToeComputer : AppCompatActivity() {
             }
             homeBinding.topLeftTxt.setOnClickListener{
                 playerAction(homeBinding.topLeftTxt)
-                computerTurn()
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.topCenterTxt.setOnClickListener{
                 playerAction(homeBinding.topCenterTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.topRightTxt.setOnClickListener{
                 playerAction(homeBinding.topRightTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.middleLeftTxt.setOnClickListener{
                 playerAction(homeBinding.middleLeftTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.centerTxt.setOnClickListener{
                 playerAction(homeBinding.centerTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.middleRightTxt.setOnClickListener{
                 playerAction(homeBinding.middleRightTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.bottomLeftTxt.setOnClickListener{
                 playerAction(homeBinding.bottomLeftTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.bottomCenterTxt.setOnClickListener{
                 playerAction(homeBinding.bottomCenterTxt)
-                computerTurn()
-
+                if(!winner){
+                    computerTurn()
+                }
             }
             homeBinding.bottomRightTxt.setOnClickListener{
                 playerAction(homeBinding.bottomRightTxt)
-                computerTurn()
+                if(!winner){
+                    computerTurn()
+                }
             }
         }
 
@@ -349,6 +409,7 @@ class TickTacToeComputer : AppCompatActivity() {
             homeBinding.bottomRightLine.visibility = View.GONE
             playerTurn = true
             homeBinding.player.text = "PLAYER"
+            winner = false
             homeBinding.player.setTextColor(Color.GREEN)
             homeBinding.endGame.visibility = View.GONE
             setListeners()
