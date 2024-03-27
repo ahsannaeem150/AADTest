@@ -31,7 +31,8 @@ class TickTacToeComputer : AppCompatActivity() {
         }
 
         fun endGame(){
-            homeBinding.endGame.setVisibility(View.VISIBLE);
+
+                    homeBinding.endGame.setVisibility(View.VISIBLE)
         }
 
         fun disableTurnsWhenSomeoneWins(){
