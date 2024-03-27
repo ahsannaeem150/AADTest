@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">APDLab1</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="name_hint">Enter Name</string>
+    <string name="age_hint">Enter Age</string>
+    <string name="gender_hint">Enter Gender</string>
+    <string name="religion_hint">Enter Religion</string>
+    <string name="phone_hint">Enter Phone Number</string>
+    <string name="institute_title">EduGram</string>
+    <string name="login_text">LOGIN</string>
 </resources>
