@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="dataModel"
+            type="taskone.model.DataModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/navbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/gray"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/market_status"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/marketStatusHeading"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="10dp"
+
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/marketStatus"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/marketStatusHeading"
+                android:text="@{dataModel.marketStatus}"
+                android:textColor="@color/red"
+                android:layout_marginLeft="5dp"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/time"
+                android:layout_marginRight="10dp"
+                android:text="@{dataModel.time}"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                app:layout_constraintRight_toLeftOf="@id/time"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="5dp"
+                android:text="@{dataModel.date}"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/updated"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintRight_toLeftOf="@id/date"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                >
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sectionOne"
+            app:layout_constraintTop_toBottomOf="@+id/navbar"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overall"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/sectionHeadingOne"
+                android:textColor="@color/primaryColor"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/sectionHeadingOne"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/cardTwo"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardOneHeading"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="@string/net_worth"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.networth}"
+                            android:id="@+id/networth"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintTop_toBottomOf="@id/cardOneHeading"
+
+                            >
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardTwo"
+                    app:layout_constraintLeft_toRightOf="@id/cardone"
+                    app:layout_constraintRight_toLeftOf="@id/cardThree"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardTwoHeading"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="Top Loser"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CR Price"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardTwoHeading"
+                            android:id="@+id/crpricelabel"
+                            >
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cr Value"
+                            app:layout_constraintTop_toBottomOf="@id/crpricelabel"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/crvaluelabel"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P/L"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabel"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/pllabel"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GHGL"
+                            app:layout_constraintTop_toBottomOf="@id/pllabel"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/crPriceLoser"
+                            android:text="@{dataModel.lossOverall.crPrice}"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crpricelabel"
+                            app:layout_constraintTop_toBottomOf="@id/cardTwoHeading"
+                            >
+                            
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.lossOverall.crValue}"
+                            android:textColor="@color/red"
+                            android:id="@+id/crvalueloser"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabel"
+                            app:layout_constraintTop_toBottomOf="@id/crPriceLoser"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.lossOverall.pl}"
+                            android:id="@+id/plloser"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabel"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabel"
+                            >
+
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardThree"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/cardTwo"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardThreeHeading"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="Top Gainer"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CR Price"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardThreeHeading"
+                            android:id="@+id/crpricelabelgainer"
+                            >
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cr Value"
+                            app:layout_constraintTop_toBottomOf="@id/crpricelabelgainer"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/crvaluelabelgainer"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P/L"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelgainer"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/pllabelgainer"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GHGL"
+                            app:layout_constraintTop_toBottomOf="@id/pllabelgainer"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/crPriceGainer"
+                            android:text="@{dataModel.gainOverall.crPrice}"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crpricelabelgainer"
+                            app:layout_constraintTop_toBottomOf="@id/cardThreeHeading"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.gainOverall.crValue}"
+                            android:id="@+id/crvaluegainer"
+                            android:textColor="@color/red"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelgainer"
+                            app:layout_constraintTop_toBottomOf="@id/crPriceGainer"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.gainOverall.pl}"
+                            android:id="@+id/plgainer"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelgainer"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelgainer"
+                            >
+
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sectionTwo"
+
+            app:layout_constraintTop_toBottomOf="@+id/sectionOne"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/sectionHeadingTwo"
+                android:textColor="@color/primaryColor"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/sectionHeadingTwo"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardoneSectionTwo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/cardTwoSectionTwo"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardfourHeading"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="Profit Loss"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.profitLoss}"
+                            android:textColor="@color/red"
+                            android:id="@+id/profitloss"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintTop_toBottomOf="@id/cardfourHeading"
+
+                            >
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardTwoSectionTwo"
+                    app:layout_constraintLeft_toRightOf="@id/cardoneSectionTwo"
+                    app:layout_constraintRight_toLeftOf="@id/cardThreeSectionTwo"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardTwoSectionTwoHeading"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="Top Loser"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CR Price"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardTwoSectionTwoHeading"
+                            android:id="@+id/crpricelabelSectionTwo"
+                            >
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cr Value"
+                            app:layout_constraintTop_toBottomOf="@id/crpricelabelSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/crvaluelabelSectionTwo"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P/L"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/pllabelSectionTwo"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GHGL"
+                            app:layout_constraintTop_toBottomOf="@id/pllabelSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/crPriceLoserSectionTwo"
+                            android:text="@{dataModel.lossToday.crPrice}"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crpricelabelSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/cardTwoSectionTwoHeading"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.lossToday.crValue}"
+                            android:textColor="@color/red"
+                            android:id="@+id/crvalueloserSectionTwo"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/crPriceLoserSectionTwo"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.lossToday.pl}"
+                            android:id="@+id/plloserSectionTwo"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelSectionTwo"
+                            >
+
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/gray"
+                    android:id="@+id/cardThreeSectionTwo"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/cardTwoSectionTwo"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cardThreeHeadingSectionTwo"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textSize="17sp"
+                            android:text="Top Gainer"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CR Price"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardThreeHeadingSectionTwo"
+                            android:id="@+id/crpricelabelCardThreeSectionTwo"
+                            >
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cr Value"
+                            app:layout_constraintTop_toBottomOf="@id/crpricelabelCardThreeSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/crvaluelabelCardThreeSectionTwo"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P/L"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelCardThreeSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/pllabelCardThreeSectionTwo"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GHGL"
+                            app:layout_constraintTop_toBottomOf="@id/pllabelCardThreeSectionTwo"
+                            android:layout_marginLeft="10dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/crPriceGainerCardThreeSectionTwo"
+                            android:text="@{dataModel.gainToday.crPrice}"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crpricelabelCardThreeSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/cardThreeHeadingSectionTwo"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.gainToday.crValue}"
+                            android:id="@+id/crvaluegainerCardThreeSectionTwo"
+                            android:textColor="@color/red"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelCardThreeSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/crPriceGainerCardThreeSectionTwo"
+                            >
+
+                        </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{dataModel.gainToday.pl}"
+                            android:id="@+id/plgainerSectionTwo"
+                            android:textColor="@color/green"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/crvaluelabelCardThreeSectionTwo"
+                            app:layout_constraintTop_toBottomOf="@id/crvaluelabelCardThreeSectionTwo"
+                            >
+
+                        </TextView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

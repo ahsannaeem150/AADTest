@@ -1,8 +1,11 @@
 package form.model
 
 data class Person(
-    val id:Int = 0,
-    val name: String? = "",
-    val email: String? = "",
-    val age: Int?
+    var id:Int = 0,
+    var name: String? = "",
+    var email: String? = "",
+    var age: String? = "",
+    var gender: String? = "",
+    var phone:String? = "",
+    var religion:String? = ""
 )

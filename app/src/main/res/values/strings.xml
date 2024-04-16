@@ -8,4 +8,13 @@
     <string name="phone_hint">Enter Phone Number</string>
     <string name="institute_title">EduGram</string>
     <string name="login_text">LOGIN</string>
+    <string name="a1chp">A1CHP</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="check_log">Check Log</string>
+    <string name="overall">Overall</string>
+    <string name="market_status">Market Status: </string>
+    <string name="updated">Updated</string>
+    <string name="net_worth">Net Worth</string>
 </resources>

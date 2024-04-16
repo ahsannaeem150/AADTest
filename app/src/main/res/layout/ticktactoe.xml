@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:id="@+id/player"
         app:layout_constraintTop_toBottomOf="@id/heading"
         android:textStyle="bold"
@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/centerTxt"
             >
@@ -107,7 +107,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/middleLeftTxt"
             >
@@ -140,7 +140,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/middleRightTxt"
             >
@@ -173,7 +173,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/topCenterTxt"
             >
@@ -205,7 +205,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/topLeftTxt"
             >
@@ -237,7 +237,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/topRightTxt"
             >
@@ -271,7 +271,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:id="@+id/bottomCenterTxt"
             >
         </TextView>
@@ -302,7 +302,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textColor="@color/black"
             android:id="@+id/bottomLeftTxt"
             >
@@ -335,7 +335,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:id="@+id/bottomRightTxt"
             >
         </TextView>
@@ -356,7 +356,7 @@
         app:layout_constraintBottom_toTopOf="@id/endGame"
         app:layout_constraintTop_toBottomOf="@id/bottomcenter"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:id="@+id/resultTxt"
