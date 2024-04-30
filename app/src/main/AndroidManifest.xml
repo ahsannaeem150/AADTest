@@ -13,7 +13,7 @@
         android:theme="@style/Theme.APDLab1"
         tools:targetApi="31">
         <activity
-            android:name="taskone.ui.TaskOne"
+            android:name="mutableLiveData.PrimeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,10 @@
          <activity android:name="loginpage.ui.a1LoginPage" />
         <activity android:name="tictactoe.TickTacToeComputer" />
         <activity android:name="form.ui.FormActivity" />
+        <activity android:name="tictactoe.SelectOpponent" />
+        <activity android:name="animationtask.ui.AnimExample" />
+
+
     </application>
 
 </manifest>

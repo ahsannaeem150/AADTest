@@ -9,6 +9,11 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.apdlab1.R
 import com.example.apdlab1.databinding.TicktactoeBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TickTacToeComputer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +33,10 @@ class TickTacToeComputer : AppCompatActivity() {
             }
             playerTurn = !playerTurn
             }
+        }
+        GlobalScope.launch (Dispatchers.Main){
+            delay(10000)
+            homeBinding.firstTurn.visibility = View.GONE
         }
 
         fun endGame(){
