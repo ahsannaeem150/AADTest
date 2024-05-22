@@ -17,4 +17,6 @@
     <string name="market_status">Market Status: </string>
     <string name="updated">Updated</string>
     <string name="net_worth">Net Worth</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

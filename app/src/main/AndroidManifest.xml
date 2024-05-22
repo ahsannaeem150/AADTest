@@ -13,7 +13,7 @@
         android:theme="@style/Theme.APDLab1"
         tools:targetApi="31">
         <activity
-            android:name="mutableLiveData.PrimeActivity"
+            android:name="com.example.apdlab1.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="viewmodelexample.ui.MainActivity"/>
         <activity android:name="tictactoe.TickTacToe" />
         <activity android:name="loginpage.ui.a1ForgetPassword" />
          <activity android:name="loginpage.ui.a1LoginPage" />
@@ -28,6 +29,9 @@
         <activity android:name="form.ui.FormActivity" />
         <activity android:name="tictactoe.SelectOpponent" />
         <activity android:name="animationtask.ui.AnimExample" />
+        <activity android:name="mutableLiveData.PrimeActivity"/>
+        <activity android:name="firebasetesting.ui.MainFirebase"/>
+        <activity android:name="covariantandcontravariant.ui.MainContravariant" />
 
 
     </application>
