@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APDLab1"
         tools:targetApi="31">
+        <receiver android:name="service.BootBroadcast" android:enabled="true" android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="service.FirebaseService" />
         <activity
-            android:name="com.example.apdlab1.MainActivity"
+            android:name="service.BroadcastMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="firestore.ui.FireStoreUploadActivity" />
+        <activity android:name="twowaybindingpractice.ui.TwoWayBindingPracticeActivity" />
         <activity android:name="viewmodelexample.ui.MainActivity"/>
         <activity android:name="tictactoe.TickTacToe" />
         <activity android:name="loginpage.ui.a1ForgetPassword" />
@@ -32,8 +40,7 @@
         <activity android:name="mutableLiveData.PrimeActivity"/>
         <activity android:name="firebasetesting.ui.MainFirebase"/>
         <activity android:name="covariantandcontravariant.ui.MainContravariant" />
-
-
+        <activity android:name="com.example.apdlab1.MainActivity" />
     </application>
 
 </manifest>

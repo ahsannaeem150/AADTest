@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import twowaybindingpractice.model.TwoWayModel
 
 class TwoWayViewModel(application: Application):AndroidViewModel(application){
-    val nameModelMLD:MutableLiveData<TwoWayModel> = MutableLiveData(TwoWayModel())
-    var nameModelLD:LiveData<TwoWayModel> = nameModelMLD
+    var name:String = "Ahsan"
+    val nameModelMLD:MutableLiveData<String> = MutableLiveData(name)
+    var nameModelLD:LiveData<String> = nameModelMLD
 }
