@@ -10,6 +10,7 @@ class AirplaneModeBroadcast:BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if(intent?.action.equals(Intent.ACTION_AIRPLANE_MODE_CHANGED)){
             Log.e("Success", "Airplane mode Changed")
+            Toast.makeText(context, "Mode Changed" , Toast.LENGTH_SHORT).show()
         }
     }
 }
