@@ -20,6 +20,7 @@ import com.example.apdlab1.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import service.model.TimeModel
@@ -27,6 +28,8 @@ import java.util.Calendar
 import java.util.Locale
 
 class FirebaseService : Service(){
+
+    private lateinit var backgroundThread : Job
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -50,17 +53,20 @@ class FirebaseService : Service(){
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel(channelId: String, channelName: String): String{
         val chan = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE)
-        chan.lightColor = Color.BLUE
-        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         service.createNotificationChannel(chan)
         return channelId
     }
 
+    override fun onDestroy() {
+        Log.e("Success" , "Service Stopped")
+        backgroundThread.cancel()
+        super.onDestroy()
+    }
     fun myBackgroundService(){
         val timeModel:TimeModel = TimeModel()
         val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-        GlobalScope.launch (Dispatchers.IO){
+        backgroundThread = GlobalScope.launch (Dispatchers.IO){
             while (true){
                 val currentTime = Calendar.getInstance()
                 val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
