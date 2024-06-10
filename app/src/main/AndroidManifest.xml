@@ -21,7 +21,7 @@
         </receiver>
         <service android:name="service.FirebaseService" />
         <activity
-            android:name="service.BroadcastMainActivity"
+            android:name="recycler.ui.RecyclerMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +43,8 @@
         <activity android:name="firebasetesting.ui.MainFirebase"/>
         <activity android:name="covariantandcontravariant.ui.MainContravariant" />
         <activity android:name="com.example.apdlab1.MainActivity" />
+        <activity android:name="service.BroadcastMainActivity"  />
+        <activity android:name="navigationpractice.ui.NavigationHostActivity" />
     </application>
 
 </manifest>

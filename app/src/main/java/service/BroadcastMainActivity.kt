@@ -25,18 +25,12 @@ class BroadcastMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         databinding = DataBindingUtil.setContentView(this , R.layout.broadcast_activity)
 
-
         GlobalScope.launch (Dispatchers.IO){
             while (true){
                 getCurrentTimeFromFirebase()
-                delay(5000)
+                delay(1000)                         
             }
         }
-
-        val airplaneBroadcast = AirplaneModeBroadcast()
-        val intent = IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
-        registerReceiver(airplaneBroadcast , intent)
-
         val serviceIntent = Intent(this, FirebaseService::class.java)
         databinding.startService.setOnClickListener{
             Toast.makeText(this , "Service Initiated" , Toast.LENGTH_SHORT).show()

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="person"
+            type="recycler.model.Person" />
+        <variable
+            name="viewmodel"
+            type="recycler.viewmodel.RecyclerViewModel" />
+    </data>
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/gray"
+      >
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="Ahsannaeem150"
+          android:text="@{person.email}"
+          android:textSize="10sp"
+          android:layout_gravity="left" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="12344"
+          android:text="@{person.password}"
+          android:textSize="10sp"
+          android:layout_gravity="right" />
+  </androidx.cardview.widget.CardView>
+</layout>

@@ -37,7 +37,6 @@ class FirebaseService : Service(){
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.e("Success" , "Service Initialized")
-
         val channelId = createNotificationChannel("my_service", "My Background Service")
         val notificationBuilder = NotificationCompat.Builder(this, channelId )
         val notification = notificationBuilder.setOngoing(true)
@@ -46,7 +45,7 @@ class FirebaseService : Service(){
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
         startForeground(1, notification)
-        myBackgroundService()
+        myService()
         return START_STICKY
     }
     
@@ -63,7 +62,7 @@ class FirebaseService : Service(){
         backgroundThread.cancel()
         super.onDestroy()
     }
-    fun myBackgroundService(){
+    fun myService(){
         val timeModel:TimeModel = TimeModel()
         val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
         backgroundThread = GlobalScope.launch (Dispatchers.IO){
